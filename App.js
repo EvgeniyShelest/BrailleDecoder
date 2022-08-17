@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import RadioButton from './components/UI/RadioButton.jsx';
+import Braille from './components/Braille.jsx';
 import { convert_from } from './utils/braille-conversion.js';
 
 export default function App() {
@@ -10,12 +10,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>{convert_from("100000")} to start working on my</Text>
-      <TouchableOpacity
-          style={styles.button}
-          onPress={toggleRadio}
-        >
-        <RadioButton style={{}} selected={isEnabled} />
-      </TouchableOpacity>
+      <Braille />
     </View>
   );
 }

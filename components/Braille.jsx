@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, Button, TouchableOpacity, View } from 'react-native';
 import RadioButton from './UI/RadioButton.jsx';
+import { convert_from } from '../utils/braille-conversion.js';
 
-export default function Braille() {
-  const [value, setValue] = useState([0,0,0,0,0,0]);
+export default function Braille(props) {
+  const EMPTY_VALUE = [0,0,0,0,0,0];
+  const [value, setValue] = useState(props.value || EMPTY_VALUE);
   const toggleRadio = (index) => {
     setValue(previousValue => previousValue.map((e, i) => { return i === index ? (e + 1) % 2 : e }));
+  }
+  const nextHandler = () => {
+    props.onReady(value);
+    setValue(EMPTY_VALUE);
   }
 
   return (
     <View style={styles.container}>
-      <Text style={{marginBottom: 20}}>The value is: {value.join(" ")}</Text>
+      <Text style={{marginBottom: 20, alignItems: 'center',}}>
+        <Text style={{fontSize: 50}}>{convert_from(value.join(""))}</Text>
+      </Text>
       <View  style={styles.row}>
         <TouchableOpacity
             onPress={() => toggleRadio(0)}
@@ -47,14 +55,15 @@ export default function Braille() {
           <RadioButton selected={value[5]} />
         </TouchableOpacity>
       </View>
+      <Button title="Next" onPress={nextHandler} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 2,
+    backgroundColor: '#ff1',
     alignItems: 'center',
     justifyContent: 'center',
   },

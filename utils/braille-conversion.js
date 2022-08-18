@@ -25,6 +25,7 @@ const ALPHABET = {
   "110011": "X",
   "110111": "Y",
   "100111": "Z",
+  "000000": " ",
 }
 
 export function convert_from(braille_sym) {

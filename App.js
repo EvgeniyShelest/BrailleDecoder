@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Braille from './components/Braille.jsx';
+import BrailleInput from './components/BrailleInput.jsx';
 import { convert_from } from './utils/braille-conversion.js';
 
 export default function App() {
   const [array, setArray] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const grabInput = (symbol) => {
     console.log("GrBBED: ", symbol);
     setArray(previousState => [...previousState, symbol]);
@@ -12,10 +13,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1, backgroundColor: "red" }}>
-        <Text>{array.map(e => { return convert_from(e.join('')); })}</Text>
+      <View style={{ flex: 1, justifyContent: "flex-end", backgroundColor: "red" }}>
+        <Text style={{fontSize: 50}}>{array.map(e => { return convert_from(e.join('')); })}</Text>
       </View>
-      <Braille onReady={grabInput} />
+      <BrailleInput onReady={grabInput} value={array[currentIndex]} />
     </View>
   );
 }

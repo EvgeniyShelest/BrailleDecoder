@@ -3,7 +3,7 @@ import { StyleSheet, Text, Button, TouchableOpacity, View } from 'react-native';
 import RadioButton from './UI/RadioButton.jsx';
 import { convert_from } from '../utils/braille-conversion.js';
 
-export default function Braille(props) {
+export default function BrailleInput(props) {
   const EMPTY_VALUE = [0,0,0,0,0,0];
   const [value, setValue] = useState(props.value || EMPTY_VALUE);
   const toggleRadio = (index) => {

@@ -5,19 +5,18 @@ import { convert_from } from './utils/braille-conversion.js';
 
 export default function App() {
   const [array, setArray] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const grabInput = (symbol) => {
     setArray(previousState => [...previousState, symbol]);
   }
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1, justifyContent: "flex-end" }}>
+      <View style={{ minHeight: 50 }}>
         <Text style={{ fontSize: 50, color: "grey" }}>
-          {array.map(e => { return convert_from(e.join('')); })}
+          {array.map(e => { return convert_from(e); })}
         </Text>
       </View>
-      <BrailleInput onReady={grabInput} value={array[currentIndex]} />
+      <BrailleInput onReady={grabInput} />
     </View>
   );
 }

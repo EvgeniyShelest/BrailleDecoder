@@ -13,15 +13,24 @@ export default function BrailleInput(props) {
     props.onReady(value);
     setValue(EMPTY_VALUE);
   }
+  const isEmptyOrInvalid = (v) => {
+    return v.join() === EMPTY_VALUE.join() || !convert_from(v)
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={{ marginBottom: 20, alignItems: 'center' }}>
-        <Text style={{ fontSize: 50, color: "grey" }}>{convert_from(value.join(""))}</Text>
+      <Text style={{ lineHeight: 50, color: "grey" }}>
+        {
+           isEmptyOrInvalid(value) ?
+            "Type braille symbol"
+            :
+            <Text style={{ fontSize: 50 }}>{convert_from(value)}</Text>
+        }
       </Text>
-      <View  style={styles.row}>
+      <View style={styles.row}>
         {[...value.keys()].map((index) => (
           <TouchableOpacity
+              key={index}
               onPress={() => toggleRadio(index)}
             >
             <RadioButton selected={value[index]} />
@@ -35,10 +44,12 @@ export default function BrailleInput(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
     backgroundColor: '#ff1',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 20,
+    padding: 20,
+    borderRadius: 24,
   },
   row: {
     flexDirection: "row",

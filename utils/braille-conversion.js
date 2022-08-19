@@ -29,5 +29,5 @@ const ALPHABET = {
 }
 
 export function convert_from(braille_sym) {
-  return ALPHABET[braille_sym];
+  return ALPHABET[braille_sym.join("")];
 }

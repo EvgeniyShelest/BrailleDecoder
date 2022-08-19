@@ -8,7 +8,7 @@ export default function RadioButton(props) {
         margin: 10,
         borderRadius: 24,
         borderWidth: 3,
-        borderColor: '#000',
+        borderColor: 'grey',
         alignItems: 'center',
         justifyContent: 'center',
       }, props.style]}>
@@ -18,7 +18,7 @@ export default function RadioButton(props) {
               height: 24,
               width: 24,
               borderRadius: 12,
-              backgroundColor: '#000',
+              backgroundColor: 'grey',
             }}/>
             : null
         }

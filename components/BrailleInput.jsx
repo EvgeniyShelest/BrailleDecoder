@@ -16,8 +16,8 @@ export default function BrailleInput(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={{marginBottom: 20, alignItems: 'center',}}>
-        <Text style={{fontSize: 50}}>{convert_from(value.join(""))}</Text>
+      <Text style={{ marginBottom: 20, alignItems: 'center' }}>
+        <Text style={{ fontSize: 50, color: "grey" }}>{convert_from(value.join(""))}</Text>
       </Text>
       <View  style={styles.row}>
         <TouchableOpacity

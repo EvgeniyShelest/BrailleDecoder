@@ -7,14 +7,15 @@ export default function App() {
   const [array, setArray] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const grabInput = (symbol) => {
-    console.log("GrBBED: ", symbol);
     setArray(previousState => [...previousState, symbol]);
   }
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1, justifyContent: "flex-end", backgroundColor: "red" }}>
-        <Text style={{fontSize: 50}}>{array.map(e => { return convert_from(e.join('')); })}</Text>
+      <View style={{ flex: 1, justifyContent: "flex-end" }}>
+        <Text style={{ fontSize: 50, color: "grey" }}>
+          {array.map(e => { return convert_from(e.join('')); })}
+        </Text>
       </View>
       <BrailleInput onReady={grabInput} value={array[currentIndex]} />
     </View>

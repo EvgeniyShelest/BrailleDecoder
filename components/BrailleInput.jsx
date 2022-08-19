@@ -20,40 +20,13 @@ export default function BrailleInput(props) {
         <Text style={{ fontSize: 50, color: "grey" }}>{convert_from(value.join(""))}</Text>
       </Text>
       <View  style={styles.row}>
-        <TouchableOpacity
-            onPress={() => toggleRadio(0)}
-          >
-          <RadioButton selected={value[0]} />
-        </TouchableOpacity>
-        <TouchableOpacity
-            onPress={() => toggleRadio(1)}
-          >
-          <RadioButton selected={value[1]} />
-        </TouchableOpacity>
-      </View>
-      <View  style={styles.row}>
-        <TouchableOpacity
-            onPress={() => toggleRadio(2)}
-          >
-          <RadioButton selected={value[2]} />
-        </TouchableOpacity>
-        <TouchableOpacity
-            onPress={() => toggleRadio(3)}
-          >
-          <RadioButton selected={value[3]} />
-        </TouchableOpacity>
-      </View>
-      <View  style={styles.row}>
-        <TouchableOpacity
-            onPress={() => toggleRadio(4)}
-          >
-          <RadioButton selected={value[4]} />
-        </TouchableOpacity>
-        <TouchableOpacity
-            onPress={() => toggleRadio(5)}
-          >
-          <RadioButton selected={value[5]} />
-        </TouchableOpacity>
+        {[...value.keys()].map((index) => (
+          <TouchableOpacity
+              onPress={() => toggleRadio(index)}
+            >
+            <RadioButton selected={value[index]} />
+          </TouchableOpacity>
+        ))}
       </View>
       <Button title="Next" onPress={nextHandler} />
     </View>
@@ -69,5 +42,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
+    flexWrap: "wrap",
+    width: 156,
+    padding: 10,
   }
 });
